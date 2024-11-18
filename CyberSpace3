@@ -60,6 +60,7 @@
         <h1>Welcome to <strong>CyberHero: The Internet Safety Mission!</strong></h1>
         <p>As you’re browsing online, your screen flickers and suddenly fades to black. A message appears:</p>
         <p>“Welcome to the Cyber Defender Mission. Your task is to make the safest online decisions to protect yourself and climb the Security Level Meter. Each smart choice increases your score, unlocking ranks like Cyber Rookie, Cyber Protector, and Elite Cyber Defender.”</p>
+        <img src="https://drive.google.com/uc?export=view&id=18wQ56XfI7KpqLbMSTYG484CQ3HSKnN_H" alt="Introduction Image" class="image">
         <p>Are you ready? Click <button onclick="startMission()">ACCEPT MISSION</button> to begin.</p>
     </div>
 
