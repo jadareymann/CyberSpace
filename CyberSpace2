@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CyberHero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        #story-container, #question-container, #badge-container {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #fff;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        // Storyline introduction
+        const storyline = `
+            Welcome to **CyberDefender: The Internet Safety Mission!**
+
+            As you’re browsing online, your screen flickers and suddenly fades to black. A message appears, glowing with a challenge:
+
+            _"Welcome to the Cyber Defender Mission. Only those with sharp instincts and internet safety skills can join this elite team. Your mission: navigate through different online zones, make wise decisions, and protect yourself from cyber threats. Each correct choice will fill your Security Level Meter, moving you closer to earning the title of Cyber Defender."_
+
+            You hover over the button that reads **ACCEPT MISSION**, and with a click, your screen transforms.
+
+            A digital map appears, revealing different “zones” to navigate—like the Login Hub, Social Network Grove, Message Bridge, and Download Zone. At the top of the map is a Security Level Meter, currently at zero. With each smart decision you make, the meter will fill, unlocking new levels of security and bringing you closer to the rank of Cyber Defender.
+
+            Your task is clear: complete the zones, protect your profile, and climb the Security Level Meter to prove you’re ready to join the Cyber Defenders.
+        `;
+
+        // Zones and questions
+        const zones = [
+            {
+                intro: "In the Login Hub, you’re prompted to create a secure password for your Cyber Defender profile. The system hints that cyber threats are constantly trying to guess passwords.",
+                question: "Choose a secure password:",
+                options: [
+                    { text: "Fluffy123", points: 0 },
+                    { text: "Cyb3rP@ssw0rd!", points: 5 },
+                    { text: "Password123", points: 1 },
+                    { text: "123456", points: 0 }
+                ]
+            },
+            {
+                intro: "In the Social Network Grove, you encounter a lively space where digital avatars chat and connect. A friend request pops up from someone named 'CoolDude675' whom you don’t recognize.",
+                question: "What will you do with the friend request?",
+                options: [
+                    { text: "Accept the Friend Request", points: 0 },
+                    { text: "Ignore and Report the Request", points: 5 },
+                    { text: "Ask them who they are first", points: 2 },
+                    { text: "Send a message asking for details", points: 1 }
+                ]
+            },
+            {
+                intro: "While exploring Message Bridge, you receive a message from a friend with a link offering 'Free Points for Your Games!'",
+                question: "Do you click the link or take a safer route?",
+                options: [
+                    { text: "Click immediately", points: 0 },
+                    { text: "Verify with your friend first", points: 5 },
+                    { text: "Ignore the message", points: 3 },
+                    { text: "Report the message", points: 4 }
+                ]
+            },
+            {
+                intro: "In the Download Zone, you see a new 'game mod' that promises extra tools for the Cyber Defender mission. However, the download site looks unfamiliar.",
+                question: "Will you download the game mod?",
+                options: [
+                    { text: "Download from the unknown site", points: 0 },
+                    { text: "Research and download from an official site", points: 5 },
+                    { text: "Ask your friend for advice", points: 2 },
+                    { text: "Look for another source online", points: 3 }
+                ]
+            }
+        ];
+
+        // Conclusion
+        const conclusion = `
+            The final screen displays as your Security Level Meter reaches its peak, glowing brightly. A congratulatory message appears:
+
+            _"Congratulations, Cyber Defender! You’ve completed the mission, proving your skills and commitment to online safety. Your smart choices have shown that you’re ready to keep yourself—and others—safe in the digital world."_
+        `;
+
+        let currentZone = 0;
+        let totalPoints = 0;
+
+        // Shuffle zones
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Load a zone
+        function loadZone() {
+            if (currentZone >= zones.length) {
+                showBadge();
+                return;
+            }
+
+            const zone = zones[currentZone];
+            const storyContainer = document.getElementById("story-container");
+            const questionContainer = document.getElementById("question-container");
+
+            storyContainer.innerHTML = `<p>${zone.intro}</p>`;
+            questionContainer.innerHTML = `<h2>${zone.question}</h2>`;
+
+            zone.options.forEach((option) => {
+                const button = document.createElement("button");
+                button.innerText = option.text;
+                button.onclick = () => {
+                    totalPoints += option.points;
+                    currentZone++;
+                    loadZone();
+                };
+                questionContainer.appendChild(button);
+            });
+        }
+
+        // Show final badge and conclusion
+        function showBadge() {
+            const badgeContainer = document.getElementById("badge-container");
+            let badgeText = "";
+
+            if (totalPoints >= 15) {
+                badgeText = "Elite Cyber Defender! You've mastered internet safety.";
+            } else if (totalPoints >= 10) {
+                badgeText = "Cyber Protector! Great job staying secure.";
+            } else {
+                badgeText = "Cyber Rookie! Keep practicing for better security.";
+            }
+
+            badgeContainer.innerHTML = `
+                <p>${conclusion}</p>
+                <h2>${badgeText}</h2>
+                <p>Your Score: ${totalPoints}</p>
+            `;
+            document.getElementById("story-container").innerHTML = "";
+            document.getElementById("question-container").innerHTML = "";
+        }
+
+        // Initialize game
+        window.onload = function() {
+            document.getElementById("story-container").innerHTML = `<p>${storyline}</p>`;
+            shuffle(zones);
+            loadZone();
+        };
+    </script>
+</head>
+<body>
+    <div id="story-container"></div>
+    <div id="question-container"></div>
+    <div id="badge-container"></div>
+</body>
+</html>
