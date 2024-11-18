@@ -1,211 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<title>CyberHero</title>
-<style>
-/* Your existing CSS styles */
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberHero: The Internet Safety Mission</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #e0f7fa;
+            color: #00796b;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        .feedback {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        .badge {
+            font-size: 1.2em;
+            color: #388e3c;
+        }
+        .image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-<tw-story>
-<tw-storydata name="CyberHero" startnode="1" creator="Twine" creator-version="2.9.2" format="Harlowe" format-version="3.3.9" ifid="12A5FAC4-3669-4530-88C5-39F73736A0AE" options="" tags="" zoom="1" hidden>
-<style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style>
-<script role="script" id="twine-user-script" type="text/twine-javascript"></script>
-
-<tw-passagedata pid="1" name="Introduction" tags="" position="575,225" size="100,100">
-Welcome to **CyberHero: The Internet Safety Mission!**
-
-As you’re browsing online, your screen flickers and suddenly fades to black. A message appears:  
-“Welcome to the Cyber Defender Mission. Your task is to make the safest online decisions to protect yourself and climb the Security Level Meter. Each smart choice increases your score, unlocking ranks like Cyber Rookie, Cyber Protector, and Elite Cyber Defender.”
-
-Are you ready? Click **ACCEPT MISSION** to begin.  
-
-(set: $points to 0)  
-
-[[ACCEPT MISSION|Zone1]]
-</tw-passagedata>
-
-<tw-passagedata pid="2" name="Zone1" tags="" position="750,225" size="100,100">
-You’ve entered the **Login Hub.** A secure password is crucial. Choose the best option:  
-
-Option A: [[Fluffy123]] (your pet's name and some numbers)  
-Option B: [[Password2024]] (a common pattern)  
-Option C: [[Cyb3rP@ssw0rd!]] (letters, numbers, and symbols)  
-Option D: [[Secure$ite88]] (repetitive pattern)
-</tw-passagedata>
-
-<tw-passagedata pid="3" name="Fluffy123" tags="" position="625,375" size="100,100">
-The password is too simple. A message warns, "Weak passwords are easy for hackers to guess."  
-
-[[Try Again|Zone1]]
-</tw-passagedata>
-
-<tw-passagedata pid="4" name="Password2024" tags="" position="625,375" size="100,100">
-The password is slightly better but still predictable. Consider using more symbols and randomness.  
-
-[[Try Again|Zone1]]
-</tw-passagedata>
-
-<tw-passagedata pid="5" name="Cyb3rP@ssw0rd!" tags="" position="850,375" size="100,100">
-Great choice! The system approves, and your Security Level Meter increases.  
-
-(set: $points to $points + 5)  
-
-(Security Level: $points)
-
-[[Continue to Social Network Grove|Zone2]]
-</tw-passagedata>
-
-<tw-passagedata pid="6" name="Secure$ite88" tags="" position="850,375" size="100,100">
-Not bad, but it could still be improved. Add more unpredictability next time!  
-
-(set: $points to $points + 3)
-
-(Security Level: $points)
-
-[[Continue to Social Network Grove|Zone2]]
-</tw-passagedata>
-
-<tw-passagedata pid="7" name="Zone2" tags="" position="725,500" size="100,100">
-You’re in the **Social Network Grove.** A stranger, "CoolDude675," sends you a friend request. What do you do?  
-
-Option A: [[Accept the Friend Request]]  
-Option B: [[Ignore and Report the Request]]  
-Option C: [[Respond to the request with a message]]  
-Option D: [[Add them and monitor their activity]]
-</tw-passagedata>
-
-<tw-passagedata pid="8" name="Accept the Friend Request" tags="" position="625,625" size="100,100">
-You receive spam messages asking for personal info. "Be cautious with unknown requests."  
-
-[[Move to the Message Bridge|Zone3]]
-</tw-passagedata>
-
-<tw-passagedata pid="9" name="Ignore and Report the Request" tags="" position="825,625" size="100,100">
-Smart move! Reporting keeps your account safe. Your Security Level Meter increases.  
-
-(set: $points to $points + 5)
-
-(Security Level: $points)
-
-[[Move to the Message Bridge|Zone3]]
-</tw-passagedata>
-
-<tw-passagedata pid="10" name="Respond to the request with a message" tags="" position="825,625" size="100,100">
-Even interacting could be risky. Always verify identities first.  
-
-[[Move to the Message Bridge|Zone3]]
-</tw-passagedata>
-
-<tw-passagedata pid="11" name="Add them and monitor their activity" tags="" position="825,625" size="100,100">
-This could expose you to unnecessary risks. Always prioritize safety.  
-
-[[Move to the Message Bridge|Zone3]]
-</tw-passagedata>
-
-<tw-passagedata pid="12" name="Zone3" tags="" position="725,750" size="100,100">
-At the **Message Bridge,** a friend sends a link promising free game points. What do you do?  
-
-Option A: [[Click immediately without thinking]]  
-Option B: [[Verify the link with your friend first]]  
-Option C: [[Search the link online for safety]]  
-Option D: [[Ignore the link altogether]]
-</tw-passagedata>
-
-<tw-passagedata pid="13" name="Click immediately without thinking" tags="" position="625,875" size="100,100">
-The link was a phishing attempt. Your security remains unchanged.  
-
-[[Move to the Download Zone|Zone4]]
-</tw-passagedata>
-
-<tw-passagedata pid="14" name="Verify the link with your friend first" tags="" position="825,875" size="100,100">
-Excellent! Your friend confirms it’s fake. Your Security Level Meter rises.  
-
-(set: $points to $points + 5)
-
-(Security Level: $points)
-
-[[Move to the Download Zone|Zone4]]
-</tw-passagedata>
-
-<tw-passagedata pid="15" name="Search the link online for safety" tags="" position="825,875" size="100,100">
-Good effort! Searching reveals the link is unsafe.  
-
-(set: $points to $points + 3)
-
-(Security Level: $points)
-
-[[Move to the Download Zone|Zone4]]
-</tw-passagedata>
-
-<tw-passagedata pid="16" name="Ignore the link altogether" tags="" position="825,875" size="100,100">
-Safe choice! Avoiding unknown links minimizes risk.  
-
-(set: $points to $points + 5)
-
-(Security Level: $points)
-
-[[Move to the Download Zone|Zone4]]
-</tw-passagedata>
-
-<tw-passagedata pid="17" name="Zone4" tags="" position="725,1000" size="100,100">
-In the **Download Zone,** you find a "game mod" on an unfamiliar site. What’s your next step?  
-
-Option A: [[Download from the unknown site]]  
-Option B: [[Search for reviews of the site first]]  
-Option C: [[Only download from official sources]]  
-Option D: [[Ask friends if they’ve used the site before]]
-</tw-passagedata>
-
-<tw-passagedata pid="18" name="Download from the unknown site" tags="" position="600,1100" size="100,100">
-The mod installs malware! Always check sources.  
-
-[[Complete the Mission|Results]]
-</tw-passagedata>
-
-<tw-passagedata pid="19" name="Search for reviews of the site first" tags="" position="850,1100" size="100,100">
-You find mixed reviews. Better safe than sorry!  
-
-(set: $points to $points + 3)
-
-(Security Level: $points)
-
-[[Complete the Mission|Results]]
-</tw-passagedata>
-
-<tw-passagedata pid="20" name="Only download from official sources" tags="" position="850,1100" size="100,100">
-Perfect! Official sources ensure safety.  
-
-(set: $points to $points + 5)
-
-(Security Level: $points)
-
-[[Complete the Mission|Results]]
-</tw-passagedata>
-
-<tw-passagedata pid="21" name="Ask friends if they’ve used the site before" tags="" position="850,1100" size="100,100">
-Asking around helps, but it’s not foolproof.  
-
-(set: $points to $points + 3)
-
-(Security Level: $points)
-
-[[Complete the Mission|Results]]
-</tw-passagedata>
-
-<tw-passagedata pid="22" name="Results" tags="" position="725,1225" size="100,100">
-Congratulations! Your Security Level Meter is at $points.  
-
-(if: $points >= 20)[**Elite Cyber Defender Badge**: Outstanding decisions!]  
-(else-if: $points >= 10)[**Cyber Protector Badge**: Solid skills, keep improving!]  
-(else:)[**Cyber Rookie Badge**: Good start! Keep practicing.]
-
-Thank you for playing **CyberHero!**
-</tw-passagedata>
-
-</tw-storydata>
-</tw-story>
+    <div class="container">
+        <h1>Welcome to <strong>CyberHero: The Internet Safety Mission!</strong></h1>
+        <p>As you’re browsing online, your screen flickers and suddenly fades to black. A message appears:</p>
+        <p>“Welcome to the Cyber Defender Mission. Your task is to make the safest online decisions to protect yourself and climb the Security Level Meter. Each smart choice increases your score, unlocking ranks like Cyber Rookie, Cyber Protector, and Elite Cyber Defender.”</p>
+        <p>Are you ready? Click <button onclick="startMission()">ACCEPT MISSION</button> to begin.</p>
+    </div>
+
+    <script>
+        let points = 0;
+        const questions = [
+            {
+                text: `You’ve entered the <strong>Login Hub.</strong> A secure password is crucial. Choose the best option:`,
+                options: [
+                    { text: 'Fluffy123', feedback: 'The password is too simple. Try again.', points: 0 },
+                    { text: 'Password2024', feedback: 'The password is slightly better but still predictable. Consider using more symbols and randomness.', points: 0 },
+                    { text: 'Cyb3rP@ssw0rd!', feedback: 'Great choice! The system approves, and your Security Level Meter increases.', points: 5 },
+                    { text: 'Secure$ite88', feedback: 'Not bad, but it could still be improved. Add more unpredictability next time!', points: 3 }
+                ]
+            },
+            {
+                text: `You’re in the <strong>Social Network Grove.</strong> A stranger, "CoolDude675," sends you a friend request. What do you do?`,
+                options: [
+                    { text: 'Accept the Friend Request', feedback: 'You receive spam messages asking for personal info. "Be cautious with unknown requests."', points: 0 },
+                    { text: 'Ignore and Report the Request', feedback: 'Smart move! Reporting keeps your account safe. Your Security Level Meter increases.', points: 5 },
+                    { text: 'Respond to the request with a message', feedback: 'Even interacting could be risky. Always verify identities first.', points: 0 },
+                    { text: 'Add them and monitor their activity', feedback: 'This could expose you to unnecessary risks. Always prioritize safety.', points: 0 }
+                ]
+            },
+            {
+                text: `At the <strong>Message Bridge,</strong> a friend sends a link promising free game points. What do you do?`,
+                options: [
+                    { text: 'Click immediately without thinking', feedback: 'The link was a phishing attempt. Your security remains unchanged.', points: 0 },
+                    { text: 'Verify the link with your friend first', feedback: 'Excellent! Your friend confirms it’s fake. Your Security Level Meter rises.', points: 5 },
+                    { text: 'Search the link online for safety', feedback: 'Good effort! Searching reveals the link is unsafe.', points: 3 },
+                    { text: 'Ignore the link altogether', feedback: 'Safe choice! Avoiding unknown links minimizes risk.', points: 5 }
+                ]
+            },
+            {
+                text: `In the <strong>Download Zone,</strong> you find a "game mod" on an unfamiliar site. What’s your next step?`,
+                options: [
+                    { text: 'Download from the unknown site', feedback: 'The mod installs malware! Always check sources.', points: 0 },
+                    { text: 'Search for reviews of the site first', feedback: 'You find mixed reviews. Better safe than sorry!', points: 3 },
+                    { text: 'Only download from official sources', feedback: 'Perfect! Official sources ensure safety.', points: 5 },
+                    { text: 'Ask friends if they’ve used the site before', feedback: 'Asking around helps, but it’s not foolproof.', points: 3 }
+                ]
+            }
+        ];
+
+        function startMission() {
+            points = 0;
+            questions.sort(() => Math.random() - 0.5);
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            if (index >= questions.length) {
+                completeMission();
+                return;
+            }
+
+            const question = questions[index];
+            let optionsHtml = '';
+            question.options.forEach((option, i) => {
+                optionsHtml += `<button onclick="handleOption(${index}, ${i})">${option.text}</button>`;
+            });
+
+            document.querySelector('.container').innerHTML = `
+                <h2>Question ${index + 1}</h2>
+                <p>${question.text}</p>
+                ${optionsHtml}
+                <p id="feedback" class="feedback"></p>
+            `;
+        }
+
+        function handleOption(questionIndex, optionIndex) {
+            const question = questions[questionIndex];
+            const option = question.options[optionIndex];
+            points += option.points;
+            document.getElementById('feedback').innerText = option.feedback;
+            setTimeout(() => {
+                showQuestion(questionIndex + 1);
+            }, 2000);
+        }
+
+        function completeMission() {
+            let badge = '';
+            if (points >= 20) {
+                badge = '<span class="badge">**Elite Cyber Defender Badge**: Outstanding decisions!</span>';
+            } else if (points >= 10) {
+                badge = '<span class="badge">**Cyber Protector Badge**: Solid skills, keep improving!</span>';
+            } else {
+                badge = '<span class="badge">**Cyber Rookie Badge**: Good start! Keep practicing.</span>';
+            }
+            document.querySelector('.container').innerHTML = `
+                <h2>Congratulations!</h2>
+                <p>The final screen displays as your Security Level Meter reaches its peak, glowing brightly. A congratulatory message appears:</p>
+                <p>"Congratulations, Cyber Defender! You’ve completed the mission, proving your skills and commitment to online safety. Your smart choices have shown that you’re ready to keep yourself—and others—safe in the digital world."</p>
+                <p>The screen shifts, and a digital badge appears with your final rank:</p>
+                <p>${badge}</p>
+                <p>Thank you for playing <strong>CyberHero!</strong></p>
+            `;
+        }
+    </script>
 </body>
 </html>
