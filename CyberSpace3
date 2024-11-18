@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>CyberHero</title>
+<style>
+/* Your existing CSS styles */
+</style>
+</head>
+<body>
+<tw-story>
+<tw-storydata name="CyberHero" startnode="1" creator="Twine" creator-version="2.9.2" format="Harlowe" format-version="3.3.9" ifid="12A5FAC4-3669-4530-88C5-39F73736A0AE" options="" tags="" zoom="1" hidden>
+<style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style>
+<script role="script" id="twine-user-script" type="text/twine-javascript"></script>
+
+<tw-passagedata pid="1" name="Introduction" tags="" position="575,225" size="100,100">
+Welcome to **CyberHero: The Internet Safety Mission!**
+
+As you’re browsing online, your screen flickers and suddenly fades to black. A message appears:  
+“Welcome to the Cyber Defender Mission. Your task is to make the safest online decisions to protect yourself and climb the Security Level Meter. Each smart choice increases your score, unlocking ranks like Cyber Rookie, Cyber Protector, and Elite Cyber Defender.”
+
+Are you ready? Click **ACCEPT MISSION** to begin.  
+
+(set: $points to 0)  
+
+[[ACCEPT MISSION|Zone1]]
+</tw-passagedata>
+
+<tw-passagedata pid="2" name="Zone1" tags="" position="750,225" size="100,100">
+You’ve entered the **Login Hub.** A secure password is crucial. Choose the best option:  
+
+Option A: [[Fluffy123]] (your pet's name and some numbers)  
+Option B: [[Password2024]] (a common pattern)  
+Option C: [[Cyb3rP@ssw0rd!]] (letters, numbers, and symbols)  
+Option D: [[Secure$ite88]] (repetitive pattern)
+</tw-passagedata>
+
+<tw-passagedata pid="3" name="Fluffy123" tags="" position="625,375" size="100,100">
+The password is too simple. A message warns, "Weak passwords are easy for hackers to guess."  
+
+[[Try Again|Zone1]]
+</tw-passagedata>
+
+<tw-passagedata pid="4" name="Password2024" tags="" position="625,375" size="100,100">
+The password is slightly better but still predictable. Consider using more symbols and randomness.  
+
+[[Try Again|Zone1]]
+</tw-passagedata>
+
+<tw-passagedata pid="5" name="Cyb3rP@ssw0rd!" tags="" position="850,375" size="100,100">
+Great choice! The system approves, and your Security Level Meter increases.  
+
+(set: $points to $points + 5)  
+
+(Security Level: $points)
+
+[[Continue to Social Network Grove|Zone2]]
+</tw-passagedata>
+
+<tw-passagedata pid="6" name="Secure$ite88" tags="" position="850,375" size="100,100">
+Not bad, but it could still be improved. Add more unpredictability next time!  
+
+(set: $points to $points + 3)
+
+(Security Level: $points)
+
+[[Continue to Social Network Grove|Zone2]]
+</tw-passagedata>
+
+<tw-passagedata pid="7" name="Zone2" tags="" position="725,500" size="100,100">
+You’re in the **Social Network Grove.** A stranger, "CoolDude675," sends you a friend request. What do you do?  
+
+Option A: [[Accept the Friend Request]]  
+Option B: [[Ignore and Report the Request]]  
+Option C: [[Respond to the request with a message]]  
+Option D: [[Add them and monitor their activity]]
+</tw-passagedata>
+
+<tw-passagedata pid="8" name="Accept the Friend Request" tags="" position="625,625" size="100,100">
+You receive spam messages asking for personal info. "Be cautious with unknown requests."  
+
+[[Move to the Message Bridge|Zone3]]
+</tw-passagedata>
+
+<tw-passagedata pid="9" name="Ignore and Report the Request" tags="" position="825,625" size="100,100">
+Smart move! Reporting keeps your account safe. Your Security Level Meter increases.  
+
+(set: $points to $points + 5)
+
+(Security Level: $points)
+
+[[Move to the Message Bridge|Zone3]]
+</tw-passagedata>
+
+<tw-passagedata pid="10" name="Respond to the request with a message" tags="" position="825,625" size="100,100">
+Even interacting could be risky. Always verify identities first.  
+
+[[Move to the Message Bridge|Zone3]]
+</tw-passagedata>
+
+<tw-passagedata pid="11" name="Add them and monitor their activity" tags="" position="825,625" size="100,100">
+This could expose you to unnecessary risks. Always prioritize safety.  
+
+[[Move to the Message Bridge|Zone3]]
+</tw-passagedata>
+
+<tw-passagedata pid="12" name="Zone3" tags="" position="725,750" size="100,100">
+At the **Message Bridge,** a friend sends a link promising free game points. What do you do?  
+
+Option A: [[Click immediately without thinking]]  
+Option B: [[Verify the link with your friend first]]  
+Option C: [[Search the link online for safety]]  
+Option D: [[Ignore the link altogether]]
+</tw-passagedata>
+
+<tw-passagedata pid="13" name="Click immediately without thinking" tags="" position="625,875" size="100,100">
+The link was a phishing attempt. Your security remains unchanged.  
+
+[[Move to the Download Zone|Zone4]]
+</tw-passagedata>
+
+<tw-passagedata pid="14" name="Verify the link with your friend first" tags="" position="825,875" size="100,100">
+Excellent! Your friend confirms it’s fake. Your Security Level Meter rises.  
+
+(set: $points to $points + 5)
+
+(Security Level: $points)
+
+[[Move to the Download Zone|Zone4]]
+</tw-passagedata>
+
+<tw-passagedata pid="15" name="Search the link online for safety" tags="" position="825,875" size="100,100">
+Good effort! Searching reveals the link is unsafe.  
+
+(set: $points to $points + 3)
+
+(Security Level: $points)
+
+[[Move to the Download Zone|Zone4]]
+</tw-passagedata>
+
+<tw-passagedata pid="16" name="Ignore the link altogether" tags="" position="825,875" size="100,100">
+Safe choice! Avoiding unknown links minimizes risk.  
+
+(set: $points to $points + 5)
+
+(Security Level: $points)
+
+[[Move to the Download Zone|Zone4]]
+</tw-passagedata>
+
+<tw-passagedata pid="17" name="Zone4" tags="" position="725,1000" size="100,100">
+In the **Download Zone,** you find a "game mod" on an unfamiliar site. What’s your next step?  
+
+Option A: [[Download from the unknown site]]  
+Option B: [[Search for reviews of the site first]]  
+Option C: [[Only download from official sources]]  
+Option D: [[Ask friends if they’ve used the site before]]
+</tw-passagedata>
+
+<tw-passagedata pid="18" name="Download from the unknown site" tags="" position="600,1100" size="100,100">
+The mod installs malware! Always check sources.  
+
+[[Complete the Mission|Results]]
+</tw-passagedata>
+
+<tw-passagedata pid="19" name="Search for reviews of the site first" tags="" position="850,1100" size="100,100">
+You find mixed reviews. Better safe than sorry!  
+
+(set: $points to $points + 3)
+
+(Security Level: $points)
+
+[[Complete the Mission|Results]]
+</tw-passagedata>
+
+<tw-passagedata pid="20" name="Only download from official sources" tags="" position="850,1100" size="100,100">
+Perfect! Official sources ensure safety.  
+
+(set: $points to $points + 5)
+
+(Security Level: $points)
+
+[[Complete the Mission|Results]]
+</tw-passagedata>
+
+<tw-passagedata pid="21" name="Ask friends if they’ve used the site before" tags="" position="850,1100" size="100,100">
+Asking around helps, but it’s not foolproof.  
+
+(set: $points to $points + 3)
+
+(Security Level: $points)
+
+[[Complete the Mission|Results]]
+</tw-passagedata>
+
+<tw-passagedata pid="22" name="Results" tags="" position="725,1225" size="100,100">
+Congratulations! Your Security Level Meter is at $points.  
+
+(if: $points >= 20)[**Elite Cyber Defender Badge**: Outstanding decisions!]  
+(else-if: $points >= 10)[**Cyber Protector Badge**: Solid skills, keep improving!]  
+(else:)[**Cyber Rookie Badge**: Good start! Keep practicing.]
+
+Thank you for playing **CyberHero!**
+</tw-passagedata>
+
+</tw-storydata>
+</tw-story>
+</body>
+</html>
