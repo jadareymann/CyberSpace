@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Previous head content remains the same -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberHero: The Internet Safety Mission</title>
+    <style>
+        /* Previous styles remain the same */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #e0f7fa;
+            color: #00796b;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        .start-message {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .security-meter {
+            width: 200px;
+            height: 20px;
+            background: #333;
+            margin: 1rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .security-level {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff4646 0%, #ffeb3b 50%, #4caf50 100%);
+            transition: width 0.3s ease;
+        }
+        .astronaut {
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ffffff" stroke="%23007BFF" stroke-width="5"/><circle cx="50" cy="50" r="35" fill="%23007BFF"/></svg>');
+            position: absolute;
+            display: none;
+            transition: all 0.2s ease;
+        }
+        .game-area {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(224, 247, 250, 0.9);
+        }
+        .option-zone {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .feedback {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .badge {
+            font-size: 1.2em;
+            color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="startScreen">
+        <h1>Welcome to <strong>CyberHero: The Internet Safety Mission!</strong></h1>
+        <p>As you're browsing online, your screen flickers and suddenly fades to black. A message appears:</p>
+        <p class="start-message">"Welcome to the Cyber Defender Mission. Your task is to make the safest online decisions to protect yourself and climb the Security Level Meter. Each smart choice increases your score, unlocking ranks like Cyber Rookie, Cyber Protector, and Elite Cyber Defender."</p>
+        <div class="security-meter">
+            <div id="securityLevel" class="security-level"></div>
+        </div>
+        <p>Press ENTER to start your mission!</p>
+    </div>
+
+    <div id="gameArea" class="game-area">
+        <div id="astronaut" class="astronaut"></div>
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+    <script>
+        let gameStarted = false;
+        let points = 0;
+        let currentQuestion = 0;
+        const astronaut = document.getElementById('astronaut');
+        const securityLevel = document.getElementById('securityLevel');
+        const gameArea = document.getElementById('gameArea');
+        const startScreen = document.getElementById('startScreen');
+        const feedback = document.getElementById('feedback');
+
+        const questions = [
+            {
+                text: `You've entered the <strong>Login Hub.</strong> A secure password is crucial. Choose the best option:`,
+                options: [
+                    { text: 'Fluffy123', feedback: 'The password is too simple. Try again.', points: 0 },
+                    { text: 'Password2024', feedback: 'The password is slightly better but still predictable. Consider using more symbols and randomness.', points: 0 },
+                    { text: 'Cyb3rP@ssw0rd!', feedback: 'Great choice! The system approves, and your Security Level Meter increases.', points: 5 },
+                    { text: 'Secure$ite88', feedback: 'Not bad, but it could still be improved. Add more unpredictability next time!', points: 3 }
+                ]
+            },
+            {
+                text: `You're in the <strong>Social Network Grove.</strong> A stranger, "CoolDude675," sends you a friend request. What do you do?`,
+                options: [
+                    { text: 'Accept the Friend Request', feedback: 'You receive spam messages asking for personal info. "Be cautious with unknown requests."', points: 0 },
+                    { text: 'Ignore and Report the Request', feedback: 'Smart move! Reporting keeps your account safe. Your Security Level Meter increases.', points: 5 },
+                    { text: 'Respond to the request with a message', feedback: 'Even interacting could be risky. Always verify identities first.', points: 0 },
+                    { text: 'Add them and monitor their activity', feedback: 'This could expose you to unnecessary risks. Always prioritize safety.', points: 0 }
+                ]
+            },
+            {
+                text: `At the <strong>Message Bridge,</strong> a friend sends a link promising free game points. What do you do?`,
+                options: [
+                    { text: 'Click immediately without thinking', feedback: 'The link was a phishing attempt. Your security remains unchanged.', points: 0 },
+                    { text: 'Verify the link with your friend first', feedback: 'Excellent! Your friend confirms it's fake. Your Security Level Meter rises.', points: 5 },
+                    { text: 'Search the link online for safety', feedback: 'Good effort! Searching reveals the link is unsafe.', points: 3 },
+                    { text: 'Ignore the link altogether', feedback: 'Safe choice! Avoiding unknown links minimizes risk.', points: 5 }
+                ]
+            },
+            {
+                text: `In the <strong>Download Zone,</strong> you find a "game mod" on an unfamiliar site. What's your next step?`,
+                options: [
+                    { text: 'Download from the unknown site', feedback: 'The mod installs malware! Always check sources.', points: 0 },
+                    { text: 'Search for reviews of the site first', feedback: 'You find mixed reviews. Better safe than sorry!', points: 3 },
+                    { text: 'Only download from official sources', feedback: 'Perfect! Official sources ensure safety.', points: 5 },
+                    { text: 'Ask friends if they've used the site before', feedback: 'Asking around helps, but it's not foolproof.', points: 3 }
+                ]
+            }
+        ];
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && !gameStarted) {
+                startGame();
+            } else if (gameStarted) {
+                handleMovement(event);
+            }
+        });
+
+        function startGame() {
+            gameStarted = true;
+            startScreen.style.display = 'none';
+            gameArea.style.display = 'block';
+            astronaut.style.display = 'block';
+            positionAstronautCenter();
+            questions.sort(() => Math.random() - 0.5);
+            showQuestion(currentQuestion);
+        }
+
+        function positionAstronautCenter() {
+            const x = window.innerWidth / 2 - 25;
+            const y = window.innerHeight / 2 - 25;
+            astronaut.style.left = x + 'px';
+            astronaut.style.top = y + 'px';
+        }
+
+        function handleMovement(event) {
+            const speed = 10;
+            const currentX = parseInt(astronaut.style.left) || 0;
+            const currentY = parseInt(astronaut.style.top) || 0;
+
+            switch(event.key) {
+                case 'ArrowLeft':
+                    astronaut.style.left = Math.max(0, currentX - speed) + 'px';
+                    break;
+                case 'ArrowRight':
+                    astronaut.style.left = Math.min(window.innerWidth - 50, currentX + speed) + 'px';
+                    break;
+                case 'ArrowUp':
+                    astronaut.style.top = Math.max(0, currentY - speed) + 'px';
+                    break;
+                case 'ArrowDown':
+                    astronaut.style.top = Math.min(window.innerHeight - 50, currentY + speed) + 'px';
+                    break;
+            }
+            checkCollisions();
+        }
+
+        function showQuestion(index) {
+            if (index >= questions.length) {
+                completeMission();
+                return;
+            }
+
+            const question = questions[index];
+            feedback.innerHTML = `<h2>${question.text}</h2>`;
+            feedback.style.display = 'block';
+
+            const positions = [
+                { left: '20%', top: '20%' },
+                { left: '70%', top: '20%' },
+                { left: '20%', top: '70%' },
+                { left: '70%', top: '70%' }
+            ];
+
+            document.querySelectorAll('.option-zone').forEach(el => el.remove());
+
+            question.options.forEach((option, i) => {
+                const zone = document.createElement('div');
+                zone.className = 'option-zone';
+                zone.innerHTML = option.text;
+                zone.style.left = positions[i].left;
+                zone.style.top = positions[i].top;
+                zone.dataset.points = option.points;
+                zone.dataset.feedback = option.feedback;
+                gameArea.appendChild(zone);
+            });
+        }
+
+        function checkCollisions() {
+            const astronautRect = astronaut.getBoundingClientRect();
+            document.querySelectorAll('.option-zone').forEach(zone => {
+                const zoneRect = zone.getBoundingClientRect();
+                if (isColliding(astronautRect, zoneRect)) {
+                    handleCollision(zone);
+                }
+            });
+        }
+
+        function isColliding(rect1, rect2) {
+            return !(rect1.right < rect2.left || 
+                    rect1.left > rect2.right || 
+                    rect1.bottom < rect2.top || 
+                    rect1.top > rect2.bottom);
+        }
+
+        function handleCollision(zone) {
+            points += parseInt(zone.dataset.points);
+            feedback.innerHTML = zone.dataset.feedback;
+            feedback.style.display = 'block';
+            document.querySelectorAll('.option-zone').forEach(el => el.remove());
+            
+            securityLevel.style.width = `${(points / 20) * 100}%`;
+            
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }, 2000);
+        }
+
+        function completeMission() {
+            let badge = '';
+            if (points >= 20) {
+                badge = '<span class="badge">**Elite Cyber Defender Badge**: Outstanding decisions!</span>';
+            } else if (points >= 10) {
+                badge = '<span class="badge">**Cyber Protector Badge**: Solid skills, keep improving!</span>';
+            } else {
+                badge = '<span class="badge">**Cyber Rookie Badge**: Good start! Keep practicing.</span>';
+            }
+            
+            gameArea.style.display = 'none';
+            startScreen.style.display = 'block';
+            startScreen.innerHTML = `
+                <h2>Congratulations!</h2>
+                <p>The final screen displays as your Security Level Meter reaches its peak, glowing brightly. A congratulatory message appears:</p>
+                <p>"Congratulations, Cyber Defender! You've completed the mission, proving your skills and commitment to online safety. Your smart choices have shown that you're ready to keep yourself—and others—safe in the digital world."</p>
+                <p>The screen shifts, and a digital badge appears with your final rank:</p>
+                <p>${badge}</p>
+                <p>Thank you for playing <strong>CyberHero!</strong></p>
+            `;
+        }
+
+        window.addEventListener('resize', function() {
+            if (gameStarted) {
+                positionAstronautCenter();
+            }
+        });
+    </script>
+</body>
+</html>
