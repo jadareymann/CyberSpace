@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Previous head content remains the same -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberHero: The Internet Safety Mission</title>
     <style>
-        /* Previous styles remain the same */
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
             background-color: #e0f7fa;
@@ -108,7 +106,8 @@
         <div class="security-meter">
             <div id="securityLevel" class="security-level"></div>
         </div>
-        <p>Press ENTER to start your mission!</p>
+        <p>Press the button below to start your mission!</p>
+        <button id="startButton" style="padding: 10px 20px; font-size: 16px; margin-top: 20px;">Start Game</button>
     </div>
 
     <div id="gameArea" class="game-area">
@@ -149,7 +148,7 @@
                 text: `At the <strong>Message Bridge,</strong> a friend sends a link promising free game points. What do you do?`,
                 options: [
                     { text: 'Click immediately without thinking', feedback: 'The link was a phishing attempt. Your security remains unchanged.', points: 0 },
-                    { text: 'Verify the link with your friend first', feedback: 'Excellent! Your friend confirms it's fake. Your Security Level Meter rises.', points: 5 },
+                    { text: 'Verify the link with your friend first', feedback: 'Excellent! Your friend confirms it\'s fake. Your Security Level Meter rises.', points: 5 },
                     { text: 'Search the link online for safety', feedback: 'Good effort! Searching reveals the link is unsafe.', points: 3 },
                     { text: 'Ignore the link altogether', feedback: 'Safe choice! Avoiding unknown links minimizes risk.', points: 5 }
                 ]
@@ -160,16 +159,15 @@
                     { text: 'Download from the unknown site', feedback: 'The mod installs malware! Always check sources.', points: 0 },
                     { text: 'Search for reviews of the site first', feedback: 'You find mixed reviews. Better safe than sorry!', points: 3 },
                     { text: 'Only download from official sources', feedback: 'Perfect! Official sources ensure safety.', points: 5 },
-                    { text: 'Ask friends if they've used the site before', feedback: 'Asking around helps, but it's not foolproof.', points: 3 }
+                    { text: 'Ask friends if they\'ve used the site before', feedback: 'Asking around helps, but it\'s not foolproof.', points: 3 }
                 ]
             }
         ];
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && !gameStarted) {
+        // Start the game when the button is clicked
+        document.getElementById('startButton').addEventListener('click', function() {
+            if (!gameStarted) {
                 startGame();
-            } else if (gameStarted) {
-                handleMovement(event);
             }
         });
 
@@ -179,8 +177,8 @@
             gameArea.style.display = 'block';
             astronaut.style.display = 'block';
             positionAstronautCenter();
-            questions.sort(() => Math.random() - 0.5);
             showQuestion(currentQuestion);
+            document.addEventListener('keydown', handleMovement);
         }
 
         function positionAstronautCenter() {
@@ -255,9 +253,9 @@
 
         function isColliding(rect1, rect2) {
             return !(rect1.right < rect2.left || 
-                    rect1.left > rect2.right || 
-                    rect1.bottom < rect2.top || 
-                    rect1.top > rect2.bottom);
+                     rect1.left > rect2.right || 
+                     rect1.bottom < rect2.top || 
+                     rect1.top > rect2.bottom);
         }
 
         function handleCollision(zone) {
@@ -267,7 +265,7 @@
             document.querySelectorAll('.option-zone').forEach(el => el.remove());
             
             securityLevel.style.width = `${(points / 20) * 100}%`;
-            
+
             setTimeout(() => {
                 currentQuestion++;
                 showQuestion(currentQuestion);
@@ -277,11 +275,11 @@
         function completeMission() {
             let badge = '';
             if (points >= 20) {
-                badge = '<span class="badge">**Elite Cyber Defender Badge**: Outstanding decisions!</span>';
+                badge = '**Elite Cyber Defender Badge**: Outstanding decisions!';
             } else if (points >= 10) {
-                badge = '<span class="badge">**Cyber Protector Badge**: Solid skills, keep improving!</span>';
+                badge = '**Cyber Protector Badge**: Solid skills, keep improving!';
             } else {
-                badge = '<span class="badge">**Cyber Rookie Badge**: Good start! Keep practicing.</span>';
+                badge = '**Cyber Rookie Badge**: Good start! Keep practicing.';
             }
             
             gameArea.style.display = 'none';
@@ -291,7 +289,7 @@
                 <p>The final screen displays as your Security Level Meter reaches its peak, glowing brightly. A congratulatory message appears:</p>
                 <p>"Congratulations, Cyber Defender! You've completed the mission, proving your skills and commitment to online safety. Your smart choices have shown that you're ready to keep yourself—and others—safe in the digital world."</p>
                 <p>The screen shifts, and a digital badge appears with your final rank:</p>
-                <p>${badge}</p>
+                <p class="badge">${badge}</p>
                 <p>Thank you for playing <strong>CyberHero!</strong></p>
             `;
         }
