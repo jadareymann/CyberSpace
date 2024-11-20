@@ -53,7 +53,7 @@
         .astronaut {
             width: 50px;
             height: 50px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ffffff" stroke="%23007BFF" stroke-width="5"/><circle cx="50" cy="50" r="35" fill="%23007BFF"/></svg>');
+            background: url('https://img.icons8.com/ios-filled/50/000000/astronaut.png') no-repeat center/contain; /* Astronaut icon */
             position: absolute;
             display: none;
             transition: all 0.2s ease;
@@ -80,6 +80,7 @@
             padding: 10px;
             text-align: center;
             font-size: 14px;
+            margin-top: 20px; /* Added margin for spacing */
         }
         .feedback {
             position: fixed;
@@ -221,8 +222,8 @@
             feedback.style.display = 'block';
 
             const positions = [
-                { left: '20%', top: '20%' },
-                { left: '70%', top: '20%' },
+                { left: '20%', top: '40%' },
+                { left: '70%', top: '40%' },
                 { left: '20%', top: '70%' },
                 { left: '70%', top: '70%' }
             ];
@@ -234,7 +235,7 @@
                 zone.className = 'option-zone';
                 zone.innerHTML = option.text;
                 zone.style.left = positions[i].left;
-                zone.style.top = positions[i].top;
+                zone.style.top = positions[i].top; // Increased vertical spacing
                 zone.dataset.points = option.points;
                 zone.dataset.feedback = option.feedback;
                 gameArea.appendChild(zone);
